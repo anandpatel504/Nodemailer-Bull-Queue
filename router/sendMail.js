@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { main } = require("../mailService/bullQueue");
+const { addToMailQueue } = require("../mailService/bullQueue");
 
-router.post("/mail", async (req, res) => {
+router.post("/mail", (req, res) => {
   const {
     senderName,
     senderEmail,
@@ -12,7 +12,7 @@ router.post("/mail", async (req, res) => {
     text 
   } = req.body;
 //   console.log(req.body, "body response");
-  await main(
+  addToMailQueue(
     senderName,
     senderEmail,
     password,
